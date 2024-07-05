@@ -556,6 +556,13 @@ namespace etl
   struct integral_limits<unsigned long long> : public private_integral_limits::statics_unsigned_long_long<>
   {
   };
+  #ifdef __MSP430_20_BIT__
+    template<>
+    struct integral_limits<__int20 unsigned> {
+        static constexpr __int20 unsigned max = 0xFFFFF;
+        static constexpr __int20 unsigned min = 0;
+    };
+  #endif
 }
 
 #include "private/minmax_pop.h"
